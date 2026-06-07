@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virelun — Coming Soon</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #030305;
+      --night: #080b14;
+      --purple: #2a143d;
+      --deep-purple: #15091f;
+      --blue: #0b1020;
+      --silver: #c9c3d6;
+      --ivory: #f4efe7;
+      --muted: #8e879b;
+      --line: rgba(201, 195, 214, 0.28);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      background: var(--black);
+      color: var(--ivory);
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    .page {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 78% 28%, rgba(105, 75, 170, 0.18), transparent 32%),
+        radial-gradient(circle at 20% 75%, rgba(70, 40, 130, 0.22), transparent 34%),
+        linear-gradient(135deg, #020203 0%, #070711 45%, #030305 100%);
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background:
+        linear-gradient(115deg, transparent 8%, rgba(79, 48, 143, 0.16) 22%, transparent 37%),
+        linear-gradient(150deg, transparent 46%, rgba(32, 45, 95, 0.22) 57%, rgba(120, 80, 180, 0.16) 63%, transparent 76%);
+      filter: blur(10px);
+      transform: rotate(-4deg);
+      opacity: 0.95;
+      pointer-events: none;
+    }
+
+    .satin {
+      position: absolute;
+      width: 85vw;
+      height: 44vh;
+      left: -10vw;
+      bottom: 0;
+      background:
+        radial-gradient(ellipse at 22% 50%, rgba(172, 142, 255, 0.32), transparent 13%),
+        linear-gradient(110deg, transparent 0%, rgba(42, 20, 61, 0.2) 19%, rgba(104, 72, 190, 0.22) 32%, rgba(7, 8, 18, 0.82) 45%, rgba(75, 45, 160, 0.2) 64%, transparent 82%);
+      border-radius: 50%;
+      filter: blur(8px);
+      opacity: 0.95;
+      transform: rotate(7deg);
+      pointer-events: none;
+    }
+
+    .satin-two {
+      position: absolute;
+      width: 74vw;
+      height: 55vh;
+      right: -23vw;
+      top: 30vh;
+      background:
+        radial-gradient(ellipse at 32% 24%, rgba(195, 170, 255, 0.34), transparent 10%),
+        linear-gradient(135deg, transparent 0%, rgba(45, 28, 80, 0.12) 23%, rgba(122, 81, 220, 0.22) 34%, rgba(4, 4, 9, 0.88) 48%, rgba(55, 34, 130, 0.22) 68%, transparent 90%);
+      border-radius: 50%;
+      filter: blur(9px);
+      opacity: 0.86;
+      transform: rotate(-22deg);
+      pointer-events: none;
+    }
+
+    .grain {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(circle at center, black, transparent 78%);
+      opacity: 0.26;
+      pointer-events: none;
+    }
+
+    header {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      padding: 42px 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 17px;
+      font-weight: 300;
+      letter-spacing: 0.62em;
+      color: var(--ivory);
+      text-transform: uppercase;
+    }
+
+    .top-note {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: rgba(244, 239, 231, 0.48);
+      text-transform: uppercase;
+    }
+
+    main {
+      position: relative;
+      z-index: 5;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px 120px;
+      text-align: center;
+    }
+
+    .hero {
+      width: min(880px, 100%);
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(48px, 8vw, 106px);
+      font-weight: 300;
+      letter-spacing: -0.055em;
+      line-height: 0.96;
+      color: rgba(244, 239, 231, 0.92);
+      text-shadow: 0 0 36px rgba(185, 150, 255, 0.08);
+    }
+
+    .translation {
+      margin-top: 22px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(24px, 4vw, 44px);
+      font-weight: 300;
+      letter-spacing: -0.035em;
+      color: rgba(201, 195, 214, 0.72);
+    }
+
+    .copy {
+      margin-top: 34px;
+      display: grid;
+      gap: 10px;
+      color: rgba(244, 239, 231, 0.72);
+      font-size: clamp(15px, 1.6vw, 19px);
+      line-height: 1.65;
+    }
+
+    .copy .en {
+      color: rgba(201, 195, 214, 0.57);
+    }
+
+    .button-wrap {
+      margin-top: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 235px;
+      height: 62px;
+      padding: 0 34px;
+      border: 1px solid rgba(201, 195, 214, 0.62);
+      border-radius: 999px;
+      background: rgba(5, 5, 8, 0.28);
+      color: rgba(244, 239, 231, 0.86);
+      text-decoration: none;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      backdrop-filter: blur(12px);
+      box-shadow:
+        inset 0 0 18px rgba(160, 120, 255, 0.05),
+        0 0 34px rgba(95, 72, 160, 0.08);
+      transition: 250ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(244, 239, 231, 0.78);
+      box-shadow:
+        inset 0 0 20px rgba(160, 120, 255, 0.08),
+        0 0 42px rgba(125, 90, 220, 0.16);
+    }
+
+    .divider {
+      margin: 48px auto 0;
+      width: min(360px, 76%);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+      position: relative;
+    }
+
+    .divider::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 9px;
+      height: 9px;
+      background: rgba(201, 195, 214, 0.95);
+      transform: translate(-50%, -50%) rotate(45deg);
+      box-shadow: 0 0 24px rgba(181, 145, 255, 0.7);
+    }
+
+    .tagline {
+      margin-top: 36px;
+      font-size: 13px;
+      letter-spacing: 0.36em;
+      color: rgba(244, 239, 231, 0.62);
+      text-transform: uppercase;
+    }
+
+    footer {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      padding: 0 24px 34px;
+      text-align: center;
+      color: rgba(244, 239, 231, 0.62);
+      font-size: 14px;
+      letter-spacing: 0.03em;
+    }
+
+    footer a {
+      color: rgba(194, 183, 255, 0.92);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 32px 24px;
+      }
+
+      .top-note {
+        display: none;
+      }
+
+      .logo {
+        font-size: 14px;
+        letter-spacing: 0.45em;
+      }
+
+      main {
+        padding: 60px 20px 100px;
+      }
+
+      .copy {
+        margin-top: 28px;
+      }
+
+      .button {
+        min-width: 205px;
+        height: 56px;
+        font-size: 13px;
+      }
+
+      .tagline {
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        line-height: 1.8;
+      }
+
+      footer {
+        font-size: 12px;
+        line-height: 1.8;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="satin"></div>
+    <div class="satin-two"></div>
+    <div class="grain"></div>
+
+    <header>
+      <div class="logo">VIRELUN</div>
+      <div class="top-note">Designed after dark</div>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="Virelun coming soon">
+        <h1>Yakında görüşürüz.</h1>
+
+        <p class="translation">See you soon.</p>
+
+        <div class="copy">
+          <p>Virelun çok yakında burada olacak.</p>
+          <p class="en">Virelun will be here very soon.</p>
+        </div>
+
+        <div class="button-wrap">
+          <a class="button" href="mailto:hello@virelun.com">Coming Soon</a>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="tagline">Private. Refined. Designed after dark.</p>
+      </section>
+    </main>
+
+    <footer>
+      İletişim için / For contact:
+      <a href="mailto:hello@virelun.com">hello@virelun.com</a>
+    </footer>
+  </div>
+</body>
+</html>
